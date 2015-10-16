@@ -1,18 +1,40 @@
+var API_URL = "https://todo-backend-nk1tz.c9.io/api";
+var Backbone = require('backbone');
+var models = require("./models");
+// var _ = require('underscore');
+var React = require('react');
+var ReactDOM = require('react-dom');
 
-
+//REACT
 var TodoListApp = React.createClass({
     loadTodosFromServer: function() {
-        $.ajax({
-          url: this.props.url,
-          dataType: 'json',
-          cache: false,
-          success: function(data) {
-            this.setState({data: data});
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(this.props.url, status, err.toString());
-          }.bind(this)
-        });
+        // $.ajax({
+        //   url: this.props.url,
+        //   dataType: 'json',
+        //   cache: false,
+        //   success: function(data) {
+        //     this.setState({data: data});
+        //   }.bind(this),
+        //   error: function(xhr, status, err) {
+        //     console.error(this.props.url, status, err.toString());
+        //   }.bind(this)
+        // });
+        
+        var currentComponent = this;
+        
+        var ToDoList = new models.TodoCollection();
+        
+        return ToDoList.fetch().then(
+            function(result) {
+                // console.log("result");
+                // console.log(result);
+                // console.log("Todolist");
+                // console.log(ToDoList);
+                
+                
+                currentComponent.setState({data: result});
+            });        
+        
     },
     componentDidMount: function() {
         this.loadTodosFromServer();
@@ -98,7 +120,7 @@ var AddTodo = React.createClass({
         });
         this.refs.name.value = '';
         this.refs.description.value = '';
-        this.refs.deadline.value = "yyyy-MM-dd"
+        this.refs.deadline.value = "yyyy-MM-dd";
         return;
     },
     
@@ -140,4 +162,3 @@ ReactDOM.render(
 );
 
 
-var models = require("./models");
