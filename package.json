@@ -1,0 +1,23 @@
+{
+  "name": "Todolist",
+  "version": "1.0.0",
+  "description": "The eisenhower matrix applied to a todolist",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nk1tz/todo-webapp.git"
+  },
+  "author": "Nathaniel Kitzke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nk1tz/todo-webapp/issues"
+  },
+  "homepage": "https://github.com/nk1tz/todo-webapp",
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "underscore": "^1.8.3"
+  }
+}
