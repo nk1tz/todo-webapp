@@ -94,18 +94,22 @@
 	        var todos = this.state.data;
 	        var newTodos = todos.concat([todo]);
 	        this.setState({ data: newTodos });
-	        $.ajax({
-	            url: this.props.url,
-	            dataType: 'json',
-	            type: 'POST',
-	            data: todo,
-	            success: (function (data) {
-	                this.setState({ data: data });
-	            }).bind(this),
-	            error: (function (xhr, status, err) {
-	                console.error(this.props.url, status, err.toString());
-	            }).bind(this)
-	        });
+	        // $.ajax({
+	        //   url: this.props.url,
+	        //   dataType: 'json',
+	        //   type: 'POST',
+	        //   data: todo,
+	        //   success: function(data) {
+	        //     this.setState({data: data});
+	        //   }.bind(this),
+	        //   error: function(xhr, status, err) {
+	        //     console.error(this.props.url, status, err.toString());
+	        //   }.bind(this)
+	        // });
+
+	        var todoModel = new models.TodoModel(todo);
+	        console.log(todoModel);
+	        todoModel.save();
 	    },
 	    render: function render() {
 	        return React.createElement(
@@ -12916,6 +12920,7 @@
 	    //     createdOn: new Date(),
 	    //     deadline: null,
 	    // }
+	    urlRoot: API_URL + '/Todos'
 	});
 
 	var TodoCollection = Backbone.Collection.extend({
@@ -12924,7 +12929,7 @@
 	});
 
 	module.exports = {
-	    // todoModel: todoModel,
+	    TodoModel: TodoModel,
 	    TodoCollection: TodoCollection
 	};
 
