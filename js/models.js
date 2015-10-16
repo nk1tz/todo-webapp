@@ -22,8 +22,6 @@ var TodoCollection = Backbone.Collection.extend({
 
 
 module.exports = {
-    
     // todoModel: todoModel,
     TodoCollection: TodoCollection
-    
 };

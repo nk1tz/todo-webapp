@@ -1,38 +1,11 @@
 var API_URL = "https://todo-backend-nk1tz.c9.io/api";
 var Backbone = require('backbone');
-//var models = require("./models");
+var models = require("./models");
 // var _ = require('underscore');
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var TodoModel = Backbone.Model.extend({
-    // defaults: {
-    //     id: null,
-    //     name: null,
-    //     description: null,
-    //     urgent: false,
-    //     important: false,
-    //     createdOn: new Date(),
-    //     deadline: null,
-    // }
-});
-
-var TodoCollection = Backbone.Collection.extend({
-    url: API_URL + '/Todos',
-    model: TodoModel,
-});
-
-
-module.exports = {
-    
-    // todoModel: todoModel,
-    TodoCollection: TodoCollection
-    
-};
-
-
 //REACT
-
 var TodoListApp = React.createClass({
     loadTodosFromServer: function() {
         // $.ajax({
@@ -46,18 +19,21 @@ var TodoListApp = React.createClass({
         //     console.error(this.props.url, status, err.toString());
         //   }.bind(this)
         // });
-            
-            var ToDoList = new TodoCollection()
-            return ToDoList.fetch().then(
-            function(res) {
-                console.log(res);
-                console.log(ToDoList);
+        
+        var currentComponent = this;
+        
+        var ToDoList = new models.TodoCollection();
+        
+        return ToDoList.fetch().then(
+            function(result) {
+                // console.log("result");
+                // console.log(result);
+                // console.log("Todolist");
+                // console.log(ToDoList);
                 
                 
-                // return an array of Todo Task
-                //return ToDoList;
-            }
-    );        
+                currentComponent.setState({data: result});
+            });        
         
     },
     componentDidMount: function() {
