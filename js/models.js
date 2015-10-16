@@ -13,6 +13,7 @@ var TodoModel = Backbone.Model.extend({
     //     createdOn: new Date(),
     //     deadline: null,
     // }
+    urlRoot: API_URL + '/Todos',
 });
 
 var TodoCollection = Backbone.Collection.extend({
@@ -22,6 +23,6 @@ var TodoCollection = Backbone.Collection.extend({
 
 
 module.exports = {
-    // todoModel: todoModel,
+    TodoModel: TodoModel,
     TodoCollection: TodoCollection
 };
